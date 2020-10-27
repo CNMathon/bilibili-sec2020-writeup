@@ -225,7 +225,7 @@ let func9 = function () {
   };
   let callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      // 得到密钥，该密钥解密后即为 flag
+      // 得到加密字符串，该字符串解密后即为 flag
     }
   };
 
