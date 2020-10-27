@@ -1,0 +1,22 @@
+{
+  "name": "bilibili-sec2020-writeup",
+  "version": "1.0.0",
+  "description": "哔哩哔哩2020年度安全挑战赛 - Writeup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bilibili",
+    "writeup",
+    "web",
+    "ctf",
+    "sec"
+  ],
+  "author": "CNMathon <cnnbtkk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "redis": "^3.0.2",
+    "request": "^2.88.2"
+  }
+}
